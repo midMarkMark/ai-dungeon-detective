@@ -23,7 +23,7 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.19.0'
+          flutter-version: '3.10.0'
           channel: 'stable'
           cache: true
           cache-key: flutter-${{ runner.os }}-${{ github.ref }}-${{ github.sha }}
@@ -34,9 +34,11 @@ jobs:
           packages: 'platforms;android-34 build-tools;34.0.0 ndk;27.0.12077973 cmake;3.22.1'
           accept-android-sdk-licenses: true
 
-      - name: Configure Gradle for Groovy compatibility
+      - name: Configure Gradle properties
         run: |
-          echo "org.gradle.jvmargs=-Xmx4g -XX:MaxMetaspaceSize=512m --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/java.nio=ALL-UNNAMED --add-opens=java.base/java.text=ALL-UNNAMED --add-opens=java.base/java.math=ALL-UNNAMED --add-opens=java.base/java.time=ALL-UNNAMED --add-opens=java.base/java.net=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED" >> android/gradle.properties
+          echo "android.useAndroidX=true" >> android/gradle.properties
+          echo "android.enableJetifier=true" >> android/gradle.properties
+          echo "org.gradle.jvmargs=-Xmx4g -XX:MaxMetaspaceSize=512m -Djava.awt.headless=true" >> android/gradle.properties
 
       - name: Install dependencies
         run: flutter pub get
@@ -76,7 +78,7 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.19.0'
+          flutter-version: '3.10.0'
           channel: 'stable'
           cache: true
 
