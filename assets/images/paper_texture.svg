@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <filter id="noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch" result="noise"/>
+      <feColorMatrix in="noise" type="saturate" values="0"/>
+      <feBlend in="SourceGraphic" in2="noise" mode="multiply"/>
+    </filter>
+  </defs>
+  <rect width="200" height="200" fill="#F5F0E8" filter="url(#noise)"/>
+  <g opacity="0.03">
+    <line x1="0" y1="40" x2="200" y2="40" stroke="#8B7355" stroke-width="0.5"/>
+    <line x1="0" y1="80" x2="200" y2="80" stroke="#8B7355" stroke-width="0.5"/>
+    <line x1="0" y1="120" x2="200" y2="120" stroke="#8B7355" stroke-width="0.5"/>
+    <line x1="0" y1="160" x2="200" y2="160" stroke="#8B7355" stroke-width="0.5"/>
+    <line x1="20" y1="0" x2="20" y2="200" stroke="#8B7355" stroke-width="0.5"/>
+  </g>
+</svg>
